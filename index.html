@@ -14,7 +14,10 @@
 	<script src="scripts/angular.min.js"></script>
 	<script>
 		var demoApp = angular.module('demoApp', []);
-		function SimpleController ($scope) {
+		
+		controllers = {};
+		
+		controllers.SimpleController = function ($scope) {
 			$scope.customers = [
 				{name: "Davy Jones", location: "Locker"},
 				{name: "Captain Ahab", location: "whale"},
@@ -22,7 +25,7 @@
 				{name: "Blackbeard", location: "Carribean"}
 			];
 		}
-		demoApp.controller('SimpleController', SimpleController);
+		demoApp.controller(controllers);
 	</script>	
 </body>
 </html>
