@@ -5,15 +5,28 @@
 </head>
 <body>
 	
-	<div class="container" ng-controller="SimpleController">
-		<h3>Adding a simple controller</h3>
-		<ul>
-			<li ng-repeat="cust in customers">{{ cust.name }} - {{ cust.location }}</li>
-		</ul>	
+	<div>
+		<ng-view></ng-view>
 	</div>	
 	<script src="scripts/angular.min.js"></script>
 	<script>
 		var demoApp = angular.module('demoApp', []);
+		
+		
+		demoApp.config(function ($routeProvider){
+			$routeProvider
+					.when('/',
+						{
+							controller: 'SimpleController',
+							templateUrl: 'Partials/View1.html'
+						})
+					.when('/view2',
+						{
+							controller: 'SimpleController',
+							templateUrl: 'Partials/View2.html'
+						})
+					.otherwise({redirectTo: '/'});		
+		});
 		
 		controllers = {};
 		
@@ -24,6 +37,16 @@
 				{name: "Red Rackham", location: "Unicorn"},
 				{name: "Blackbeard", location: "Carribean"}
 			];
+			
+			$scope.addCustomer = function() {
+				$scope.customers.push(
+					{
+						name: $scope.newCustomer.name,
+						location: $scope.newCustomer.location
+					}				
+				);
+				
+			}
 		}
 		demoApp.controller(controllers);
 	</script>	

@@ -1,0 +1,18 @@
+<div class="container">
+	<h2>View 1</h2>
+	Name:
+	<br />
+	<input type="text" ng-model="filter.name" /><br />
+	<h4>Search for: {{ filter.name || "Please enter text to search" }}</h4>
+	<br />
+	<ul>
+		<li ng-repeat="cust in customers | filter:filter.name | orderBy:location">{{ cust.name }} : {{ cust.location }}</li>
+	</ul>
+	<br />
+	<h4>Add a new customer</h4>
+	Name:<br /><input type="text" ng-model="newCustomer.name" /><br />
+	Location:<br /><input type="text" ng-model="newCustomer.location" /><br />
+	<button ng-click="addCustomer()">Add Customer</button>	
+	<br />
+	<a href="#/view2">Other View</a>
+</div>

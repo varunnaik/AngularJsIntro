@@ -1,0 +1,12 @@
+<div class="container">
+	<h2>View 2</h2>
+	Location:
+	<br />
+	<input type="text" ng-model="location" /><br />
+	<h5>Search for {{ location }}</h5>
+	<br />
+	<ul>
+		<li ng-repeat="cust in customers | filter:location | orderBy:name">{{ cust.name }} : {{ cust.location }}</li>
+	</ul>
+	<a href="#/">Other View</a>
+</div>
