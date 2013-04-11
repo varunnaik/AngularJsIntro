@@ -28,15 +28,34 @@
 					.otherwise({redirectTo: '/'});		
 		});
 		
-		controllers = {};
-		
-		controllers.SimpleController = function ($scope) {
-			$scope.customers = [
+		demoApp.factory('simpleFactory', function() {
+			var customers =  [
 				{name: "Davy Jones", location: "Locker"},
 				{name: "Captain Ahab", location: "whale"},
 				{name: "Red Rackham", location: "Unicorn"},
 				{name: "Blackbeard", location: "Carribean"}
 			];
+			
+			var factory = {};
+			factory.getCustomers = function() {
+				return customers;
+			}
+			factory.postCustomers = function() {
+			
+			}
+			return factory;
+		});
+		
+		controllers = {};
+		
+		controllers.SimpleController = function ($scope, simpleFactory) {
+			$scope.customers =[];
+			
+			function init() {
+				$scope.customers = simpleFactory.getCustomers();
+			}
+			
+			init();
 			
 			$scope.addCustomer = function() {
 				$scope.customers.push(
